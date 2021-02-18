@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
+import cors from "cors";
 import "express-async-errors";
 import appointmentRouter from "./routes/appointments.routes";
 import usersRouter from "./routes/users.routes";
@@ -9,6 +10,7 @@ import AppError from "./errors/AppError";
 import "./database/index";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use("/files", express.static(uploadConfig.directory));
 app.use("/appointments", appointmentRouter);
